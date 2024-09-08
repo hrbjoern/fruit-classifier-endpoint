@@ -1,7 +1,7 @@
 from pydantic import BaseModel # Parent class for strict types in pydantic!
 from fastapi import FastAPI, Depends, UploadFile, File 
 # Python image library: for uploading images to fastabi
-from PIL import image 
+from PIL import Image 
 import io 
 
 import torch
@@ -30,7 +30,8 @@ async def predict(
         input_image: UploadFile = File(...), 
         # Make sure the trained model is loaded: 
         # The output of load_model() is assigned to model (..!), which is of type ResNet.
-        model: ResNet = Depends(load_model)   # One whole Model for _each_ client! Expensive on memory!
+        model: ResNet = Depends(load_model),   # One whole Model for _each_ client! Expensive on memory!
+        transforms: transforms.Compose = Depends(load_transforms)
     ) -> Result: 
     
     # Read the uploaded image: 
