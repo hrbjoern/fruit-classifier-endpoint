@@ -33,7 +33,7 @@ def download_artifact():
     wandb_model_version = os.environ.get('WANDB_MODEL_VERSION')
 
     artifact_path = f'{wandb_org}/{wandb_project}/{wandb_model_name}:{wandb_model_version}'
-    print(artifact_path)
+    print("Artifact path:", artifact_path)
 
     artifact = wandb.Api().artifact(artifact_path, type="model")
     artifact.download(root=MODELS_DIR)
@@ -43,6 +43,8 @@ def download_artifact():
 
 
 def get_raw_model() -> ResNet:
+    """This returns the model architecture without weights"""
+
     # overwrite final classifier layer with our own output layers
     N_CLASSES = 6
 
@@ -56,6 +58,8 @@ def get_raw_model() -> ResNet:
     return model
 
 def load_model() -> ResNet:
+    """This returns the model with its wandb weights"""
+
     download_artifact()
 
     model = get_raw_model()
