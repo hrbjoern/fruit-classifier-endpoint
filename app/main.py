@@ -22,6 +22,10 @@ class Result(BaseModel):
 # Create an instance for the endpoint: 
 app = FastAPI()
 
+# Zum Vergleich:
+@app.get('/')
+def read_root():
+    return {'message': 'You should be using POST instead of GET. Try URL/docs'}
 
 # Asynchronous: Non-blocking server-client interaction! 
 # e.g. _not_ possible in Flask!

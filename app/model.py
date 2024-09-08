@@ -7,8 +7,8 @@ from torchvision.models import resnet18, ResNet
 
 from loadotenv import load_env
 
-# TODO: to be removed later, when Dockerizing.
-load_env(file_loc='/workspaces/fruit-classifier-endpoint/app/.env')
+## TODO: to be removed later, when Dockerizing.
+#load_env(file_loc='/workspaces/fruit-classifier-endpoint/app/.env')
 
 
 MODELS_DIR = 'models'
